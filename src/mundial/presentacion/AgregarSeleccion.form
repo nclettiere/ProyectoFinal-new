@@ -355,7 +355,7 @@
                       <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="156" max="32767" attributes="0"/>
+                  <EmptySpace pref="174" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="fifaRank" alignment="0" max="32767" attributes="0"/>
                       <Component id="comboStatus" alignment="0" min="-2" pref="132" max="-2" attributes="0"/>

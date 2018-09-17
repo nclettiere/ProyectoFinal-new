@@ -87,6 +87,9 @@ public class VerSelecciones extends javax.swing.JInternalFrame {
 
         jFormattedTextField1.setText("jFormattedTextField1");
 
+        setPreferredSize(new java.awt.Dimension(414, 482));
+        setVisible(true);
+
         jToolBar1.setRollover(true);
 
         jListSelecciones.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
@@ -135,6 +138,7 @@ public class VerSelecciones extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,21 +148,22 @@ public class VerSelecciones extends javax.swing.JInternalFrame {
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextFieldStatus)
                             .addComponent(jTextFieldDT)
                             .addComponent(jTextFieldCapital)
-                            .addComponent(jTextFieldRank, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jTextFieldRank, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -181,6 +186,7 @@ public class VerSelecciones extends javax.swing.JInternalFrame {
                     .addComponent(jButton1)
                     .addComponent(jButton2))
                 .addContainerGap())
+            .addComponent(jScrollPane1)
         );
 
         jToolBar1.add(jPanel1);
@@ -246,16 +252,15 @@ public class VerSelecciones extends javax.swing.JInternalFrame {
                     .addComponent(jLabel9)
                     .addComponent(jLabel10)
                     .addComponent(jLabel11))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextFieldPos2, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jTextFieldPos1)
-                        .addComponent(jTextFieldDebut)
-                        .addComponent(jTextFieldNac)
-                        .addComponent(jTextFieldPeso)
-                        .addComponent(jTextFieldAltura)
-                        .addComponent(jTextFieldClub, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)))
+                    .addComponent(jTextFieldPos1)
+                    .addComponent(jTextFieldDebut)
+                    .addComponent(jTextFieldNac)
+                    .addComponent(jTextFieldPeso)
+                    .addComponent(jTextFieldAltura)
+                    .addComponent(jTextFieldClub, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -313,40 +318,6 @@ public class VerSelecciones extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jListSeleccionesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListSeleccionesValueChanged
-        if (!evt.getValueIsAdjusting()) {
-            JList source = (JList) evt.getSource();
-            paisSeleccionado = source.getSelectedValue().toString();
-
-            Seleccion seleccionada = selecciones.obtenerPorPais(paisSeleccionado);
-
-            jTextFieldCapital.setText(seleccionada.getCapital());
-            jTextFieldDT.setText(seleccionada.getDt());
-            jTextFieldStatus.setText(seleccionada.getStatus());
-            jTextFieldRank.setText(String.valueOf(seleccionada.getRank()));
-        }
-    }//GEN-LAST:event_jListSeleccionesValueChanged
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        jTabbedPane1.setSelectedIndex(1);
-
-        DefaultListModel model = new DefaultListModel();
-
-        System.out.println(jugadores.toString());
-        ArrayList<Jugador> n = jugadores.getLista();
-        System.out.println(n.toString());
-        for (Jugador jugador : n) {
-            String pais = jugador.getPais();
-            String nombre = jugador.getNombre() + " " + jugador.getApellido();
-            System.out.println(pais);
-            if (pais.equals(paisSeleccionado)) {
-                model.addElement(nombre);
-            }
-        }
-
-        jListJugadores.setModel(model);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jListJugadoresValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListJugadoresValueChanged
         if (!evt.getValueIsAdjusting()) {
             JList source = (JList) evt.getSource();
@@ -389,6 +360,40 @@ public class VerSelecciones extends javax.swing.JInternalFrame {
 
         jListSelecciones.setModel(model);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        jTabbedPane1.setSelectedIndex(1);
+
+        DefaultListModel model = new DefaultListModel();
+
+        System.out.println(jugadores.toString());
+        ArrayList<Jugador> n = jugadores.getLista();
+        System.out.println(n.toString());
+        for (Jugador jugador : n) {
+            String pais = jugador.getPais();
+            String nombre = jugador.getNombre() + " " + jugador.getApellido();
+            System.out.println(pais);
+            if (pais.equals(paisSeleccionado)) {
+                model.addElement(nombre);
+            }
+        }
+
+        jListJugadores.setModel(model);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jListSeleccionesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListSeleccionesValueChanged
+        if (!evt.getValueIsAdjusting()) {
+            JList source = (JList) evt.getSource();
+            paisSeleccionado = source.getSelectedValue().toString();
+
+            Seleccion seleccionada = selecciones.obtenerPorPais(paisSeleccionado);
+
+            jTextFieldCapital.setText(seleccionada.getCapital());
+            jTextFieldDT.setText(seleccionada.getDt());
+            jTextFieldStatus.setText(seleccionada.getStatus());
+            jTextFieldRank.setText(String.valueOf(seleccionada.getRank()));
+        }
+    }//GEN-LAST:event_jListSeleccionesValueChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

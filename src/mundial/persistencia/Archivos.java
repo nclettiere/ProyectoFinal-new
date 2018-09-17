@@ -11,8 +11,8 @@ public class Archivos {
     private final String rutaJ;
 
     private Archivos() {
-        rutaS = "C:\\Users\\Winston Churchill\\Documents\\NetBeansProjects\\ProyectoFinal-new\\src\\mundial\\persistencia\\selecciones.dat";
-        rutaJ = "C:\\Users\\Winston Churchill\\Documents\\NetBeansProjects\\ProyectoFinal-new\\src\\mundial\\persistencia\\jugadores.dat";
+        rutaS = "C:\\Users\\Valholl\\Documents\\NetBeansProjects\\ProyectoFinal-new\\src\\mundial\\persistencia\\selecciones.dat";
+        rutaJ = "C:\\Users\\Valholl\\Documents\\NetBeansProjects\\ProyectoFinal-new\\src\\mundial\\persistencia\\jugadores.dat";
     }
 
     public static Archivos getInstancia() {

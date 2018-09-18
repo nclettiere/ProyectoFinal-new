@@ -1,14 +1,9 @@
 package mundial.presentacion;
 
 import com.bulenkov.darcula.DarculaLaf;
-import java.io.EOFException;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import javax.swing.UIManager;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.plaf.basic.BasicLookAndFeel;
-import mundial.logica.Selecciones;
 
 public class Main extends javax.swing.JFrame {
 
@@ -37,6 +32,10 @@ public class Main extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -90,9 +89,37 @@ public class Main extends javax.swing.JFrame {
         jMenu4.add(jMenuItem3);
 
         jMenuItem4.setText("Ver");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem4);
 
         jMenuBar2.add(jMenu4);
+
+        jMenu5.setText("Grupos");
+
+        jMenuItem5.setText("Ver");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem5);
+
+        jMenuItem6.setText("Crear");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem6);
+
+        jMenuItem7.setText("Reset");
+        jMenu5.add(jMenuItem7);
+
+        jMenuBar2.add(jMenu5);
 
         setJMenuBar(jMenuBar2);
 
@@ -140,6 +167,36 @@ public class Main extends javax.swing.JFrame {
         jDesktopPane1.updateUI();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        VerJugadores verJugadores = VerJugadores.getInstancia();
+        jDesktopPane1.removeAll(); // Limpiamos el panel
+        jDesktopPane1.add(verJugadores); // Agregamos la ventana
+        BasicInternalFrameUI bi = (BasicInternalFrameUI) verJugadores.getUI();
+        bi.setNorthPane(null);
+        verJugadores.setVisible(true); // Visualizamos
+        jDesktopPane1.updateUI();
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        CrearGrupos crearGrupos = CrearGrupos.getInstancia();
+        jDesktopPane1.removeAll(); // Limpiamos el panel
+        jDesktopPane1.add(crearGrupos); // Agregamos la ventana
+        BasicInternalFrameUI bi = (BasicInternalFrameUI) crearGrupos.getUI();
+        bi.setNorthPane(null);
+        crearGrupos.setVisible(true); // Visualizamos
+        jDesktopPane1.updateUI();
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        VerGrupos verGrupos = VerGrupos.getInstancia();
+        jDesktopPane1.removeAll(); // Limpiamos el panel
+        jDesktopPane1.add(verGrupos); // Agregamos la ventana
+        BasicInternalFrameUI bi = (BasicInternalFrameUI) verGrupos.getUI();
+        bi.setNorthPane(null);
+        verGrupos.setVisible(true); // Visualizamos
+        jDesktopPane1.updateUI();
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -154,11 +211,15 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     // End of variables declaration//GEN-END:variables
 }

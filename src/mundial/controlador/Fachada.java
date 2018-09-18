@@ -1,5 +1,7 @@
 package mundial.controlador;
 
+import mundial.logica.Grupo;
+import mundial.logica.Grupos;
 import mundial.logica.Jugador;
 import mundial.logica.Jugadores;
 import mundial.persistencia.Archivos;
@@ -8,13 +10,16 @@ import mundial.logica.Selecciones;
 
 public class Fachada {
 
+    private static Fachada instancia;
+    
     private final Selecciones selecciones;
     private final Jugadores jugadores;
-    private static Fachada instancia;
+    private final Grupos grupos;
 
     private Fachada() { // (1) - El constructor recupera los datos del archivo
         selecciones = (Selecciones) Archivos.getInstancia().recuperar(0);
         jugadores = (Jugadores) Archivos.getInstancia().recuperar(1);
+        grupos = (Grupos) Archivos.getInstancia().recuperar(2);
     }
 
     public static Fachada getInstancia() {
@@ -32,15 +37,25 @@ public class Fachada {
         jugadores.insertar(j);
     }
 
+    public void inscribirGrupo(Grupo g) {
+        grupos.insertar(g);
+    }
+
     public Selecciones devolverSelecciones() {
         return (Selecciones) Archivos.getInstancia().recuperar(1);
     }
 
-    public void guardarCambios(int tipo) { // tipo: 0 -> Selecciones | 1 -> Jugadores
-        if (tipo == 0) {
-            Archivos.getInstancia().guardarSelecciones(selecciones);
-        } else {
-            Archivos.getInstancia().guardarJugadores(jugadores);
+    public void guardarCambios(int tipo) { // tipo: 0 -> Selecciones | 1 -> Jugadores | 2 -> Grupos
+        switch (tipo) {
+            case 0:
+                Archivos.getInstancia().guardarSelecciones(selecciones);
+                break;
+            case 1:
+                Archivos.getInstancia().guardarJugadores(jugadores);
+                break;
+            default:
+                Archivos.getInstancia().guardarGrupos(grupos);
+                break;
         }
     }
 }

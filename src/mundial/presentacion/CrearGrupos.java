@@ -3,6 +3,7 @@ package mundial.presentacion;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import mundial.controlador.Fachada;
 import mundial.logica.Seleccion;
 import mundial.logica.Selecciones;
 import mundial.persistencia.Archivos;
@@ -10,11 +11,29 @@ import mundial.persistencia.Archivos;
 public class CrearGrupos extends javax.swing.JInternalFrame {
 
     private static CrearGrupos instancia; // 1. Instancia de si mismo
+
     String jugadorSeleccionado;
     int indice = 0;
 
     private CrearGrupos() {
+
         initComponents();
+
+        DefaultListModel model = new DefaultListModel();
+        Selecciones s = (Selecciones) Archivos.getInstancia().recuperar(0);
+        System.out.println(s.toString());
+        ArrayList<Seleccion> n = s.getLista();
+        System.out.println(n.toString());
+
+        indice = 0;
+        for (Seleccion seleccion : n) {
+            String x = seleccion.getPais();
+            model.add(indice, x);
+            indice++;
+        }
+        if (indice != 0) {
+            jListSelecciones.setModel(model);
+        }
     }
 
     public static CrearGrupos getInstancia() {
@@ -24,8 +43,6 @@ public class CrearGrupos extends javax.swing.JInternalFrame {
         }
         return instancia;
     }
-
-    private Selecciones selecciones = (Selecciones) Archivos.getInstancia().recuperar(0);
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -37,14 +54,20 @@ public class CrearGrupos extends javax.swing.JInternalFrame {
         jListSelecciones = new javax.swing.JList<>();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jLabelCantidadP = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        jLabelCantidadG = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jLabelSelG = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         jSplitPane1.setDividerLocation(120);
 
+        jListSelecciones.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jListSelecciones.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane1.setViewportView(jListSelecciones);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -55,18 +78,18 @@ public class CrearGrupos extends javax.swing.JInternalFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE)
         );
 
         jSplitPane1.setLeftComponent(jPanel1);
 
         jLabel1.setText("Cantidad de paises:");
 
-        jLabel2.setText("n/n");
+        jLabelCantidadP.setText("n/n");
 
         jLabel3.setText("Cantidad de grupos:");
 
-        jLabel4.setText("n");
+        jLabelCantidadG.setText("n");
 
         jButton1.setText("Generar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -82,27 +105,43 @@ public class CrearGrupos extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel5.setText("Selecciones por grupo:");
+
+        jLabelSelG.setText("n");
+
+        jLabel2.setText("Grupos disponibles:");
+
+        jLabel4.setText("default");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 76, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2))
+                        .addComponent(jLabelCantidadP))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabelCantidadG))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabelSelG))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel4)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 58, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,12 +149,20 @@ public class CrearGrupos extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabelCantidadP))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
+                    .addComponent(jLabelCantidadG))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabelSelG))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
                     .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 190, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 308, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
@@ -141,35 +188,60 @@ public class CrearGrupos extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(indice == 0) {
-            JOptionPane.showMessageDialog(null, "No hay paises, verifique que haya apretado el boton Obtener pasies", "Jo!?, como has crecido...", JOptionPane.INFORMATION_MESSAGE);
-        }else if (indice < 2) {
-            JOptionPane.showMessageDialog(null, "Se necesitan al menos 2 selecciones para crear grupos", "Jo!?, como has crecido...", JOptionPane.INFORMATION_MESSAGE);
-        }else if (indice % 2 != 0) {
-                JOptionPane.showMessageDialog(null, "El numero de selecciones debe ser par\nEl numero actual es: " + indice, "Jo!?, como has crecido...", JOptionPane.INFORMATION_MESSAGE);
-        }else {
+        if (indice == 0) {
+            JOptionPane.showMessageDialog(null, "No hay paises, verifique que haya apretado el boton Obtener pasies", "Jo!?, como has crecido...", JOptionPane.ERROR_MESSAGE);
+        } else if (indice < 2) {
+            JOptionPane.showMessageDialog(null, "Se necesitan al menos 2 selecciones para crear grupos", "Jo!?, como has crecido...", JOptionPane.ERROR_MESSAGE);
+        } else if (indice % 2 != 0) {
+            JOptionPane.showMessageDialog(null, "El numero de selecciones debe ser par\nEl numero actual es: " + indice, "Jo!?, como has crecido...", JOptionPane.ERROR_MESSAGE);
+        } else {
+            Selecciones selecciones = (Selecciones) Archivos.getInstancia().recuperar(0);
             int gruposMax = 2;
-            for(int i = 2; i < 65; i+=2) {
-                if((i %2 == 0) && i <= indice && i < 5){
-                    if((indice/i) % 2 == 0) {
+            for (int i = 2; i < 65; i += 2) {
+                if ((i % 2 == 0) && i <= indice && i < 5) {
+                    if ((indice / i) % 2 == 0) {
                         gruposMax = i;
                         System.out.println("Yes!");
-                    }else {
-                        gruposMax = i+1;
+                        break;
+                    } else {
+                        gruposMax = i + 1;
                         System.out.println("No!, no!");
+                        break;
                     }
                 }
             }
-            int seleccionesMax = (indice/gruposMax);
-            System.out.println(String.valueOf(gruposMax + " Grupos | " + seleccionesMax + " Selecciones | de: " + indice+" Paises"));
+            int seleccionesMax = (indice / gruposMax);
+            System.out.println(String.valueOf(gruposMax + " Grupos | " + seleccionesMax + " Selecciones | de: " + indice + " Paises"));
+            jLabelCantidadG.setText(String.valueOf(gruposMax) + "/64");
+            jLabelCantidadP.setText(String.valueOf(indice));
+            jLabelSelG.setText(String.valueOf(seleccionesMax));
+
+            int gIndice = 0;
+            int contador = 0;
+            for (Seleccion s : selecciones.getLista()) {
+                s.setGrupo(gIndice);
+                contador++;
+
+                Fachada.getInstancia().inscribirSeleccion(s);
+                Fachada.getInstancia().guardarCambios(0);
+
+                if (contador == seleccionesMax) {
+                    contador = 0;
+                    gIndice++;
+                }
+            }
+            
+            System.out.print(Fachada.getInstancia().devolverSelecciones().toString());
+
+            JOptionPane.showMessageDialog(null, "La creacion de grupos fue...\nExitosa!!11!!1", "Jo!?, como has crecido...", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         DefaultListModel model = new DefaultListModel();
-
-        System.out.println(selecciones.toString());
-        ArrayList<Seleccion> n = selecciones.getLista();
+        Selecciones s = (Selecciones) Archivos.getInstancia().recuperar(0);
+        System.out.println(s.toString());
+        ArrayList<Seleccion> n = s.getLista();
         System.out.println(n.toString());
 
         indice = 0;
@@ -178,8 +250,11 @@ public class CrearGrupos extends javax.swing.JInternalFrame {
             model.add(indice, x);
             indice++;
         }
-
-        jListSelecciones.setModel(model);
+        if (indice != 0) {
+            jListSelecciones.setModel(model);
+        } else {
+            JOptionPane.showMessageDialog(null, "No hay selecciones?", "Jo!?, como has crecido...", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
 
@@ -190,6 +265,10 @@ public class CrearGrupos extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabelCantidadG;
+    private javax.swing.JLabel jLabelCantidadP;
+    private javax.swing.JLabel jLabelSelG;
     private javax.swing.JList<String> jListSelecciones;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

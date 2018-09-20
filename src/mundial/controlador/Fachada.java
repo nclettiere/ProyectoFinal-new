@@ -42,7 +42,7 @@ public class Fachada {
     }
 
     public Selecciones devolverSelecciones() {
-        return (Selecciones) Archivos.getInstancia().recuperar(1);
+        return (Selecciones) Archivos.getInstancia().recuperar(0);
     }
 
     public void guardarCambios(int tipo) { // tipo: 0 -> Selecciones | 1 -> Jugadores | 2 -> Grupos

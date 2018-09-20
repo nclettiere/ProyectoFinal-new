@@ -39,6 +39,15 @@ public class Selecciones implements Serializable {
         return resultado;
     }
     
+    public Seleccion obtenerPorGrupo(int grupo) {
+        Seleccion resultado = null;
+        for(Seleccion seleccion : lista) {
+            if(seleccion.getGrupo() == grupo)
+                resultado = seleccion;
+        }
+        return resultado;
+    }
+    
     @Override
     public String toString() {
         return "Selecciones{" + "lista=" + lista.toString() + '}';

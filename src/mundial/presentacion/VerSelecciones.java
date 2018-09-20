@@ -12,14 +12,13 @@ import mundial.persistencia.Archivos;
 public class VerSelecciones extends javax.swing.JInternalFrame {
 
     private static VerSelecciones instancia; // 1. Instancia de si mismo
-    private Selecciones selecciones = (Selecciones) Archivos.getInstancia().recuperar(0);
-    private Jugadores jugadores = (Jugadores) Archivos.getInstancia().recuperar(1);
 
     private String paisSeleccionado;
     private String jugadorSeleccionado;
 
     private VerSelecciones() {
-
+        Selecciones selecciones = (Selecciones) Archivos.getInstancia().recuperar(0);
+        
         DefaultListModel model = new DefaultListModel();
 
         System.out.println(selecciones.toString());
@@ -66,6 +65,9 @@ public class VerSelecciones extends javax.swing.JInternalFrame {
         jTextFieldRank = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        jComboBoxGrupo = new javax.swing.JComboBox<>();
         jToolBar2 = new javax.swing.JToolBar();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -138,6 +140,17 @@ public class VerSelecciones extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton2.setText("Actualizar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setText("Grupo");
+
+        jComboBoxGrupo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -160,9 +173,14 @@ public class VerSelecciones extends javax.swing.JInternalFrame {
                             .addComponent(jTextFieldRank)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButtonCancelar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonCancelar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jComboBoxGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -184,10 +202,16 @@ public class VerSelecciones extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jTextFieldRank, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 254, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButtonCancelar))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel12)
+                    .addComponent(jComboBoxGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonCancelar)
                 .addContainerGap())
             .addComponent(jScrollPane1)
         );
@@ -324,6 +348,7 @@ public class VerSelecciones extends javax.swing.JInternalFrame {
 
     private void jListJugadoresValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListJugadoresValueChanged
         if (!evt.getValueIsAdjusting()) {
+            Jugadores jugadores = (Jugadores) Archivos.getInstancia().recuperar(1);
             JList source = (JList) evt.getSource();
             jugadorSeleccionado = source.getSelectedValue().toString();
 
@@ -347,6 +372,9 @@ public class VerSelecciones extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jListJugadoresValueChanged
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        Jugadores jugadores = (Jugadores) Archivos.getInstancia().recuperar(1);
+        
         jTabbedPane1.setSelectedIndex(1);
 
         DefaultListModel model = new DefaultListModel();
@@ -368,6 +396,7 @@ public class VerSelecciones extends javax.swing.JInternalFrame {
 
     private void jListSeleccionesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListSeleccionesValueChanged
         if (!evt.getValueIsAdjusting()) {
+            Selecciones selecciones = (Selecciones) Archivos.getInstancia().recuperar(0);
             JList source = (JList) evt.getSource();
             paisSeleccionado = source.getSelectedValue().toString();
 
@@ -388,14 +417,36 @@ public class VerSelecciones extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_formComponentShown
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Selecciones selecciones = (Selecciones) Archivos.getInstancia().recuperar(0);
+        
+        DefaultListModel model = new DefaultListModel();
+
+        System.out.println(selecciones.toString());
+        ArrayList<Seleccion> n = selecciones.getLista();
+        System.out.println(n.toString());
+
+        int indice = 0;
+        for (Seleccion seleccion : n) {
+            String x = seleccion.getPais();
+            model.add(indice, x);
+            indice++;
+        }
+
+        jListSelecciones.setModel(model);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonCancelar;
+    private javax.swing.JComboBox<String> jComboBoxGrupo;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

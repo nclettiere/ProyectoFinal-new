@@ -11,6 +11,8 @@ public class Seleccion implements Serializable {
     private String status;
     private int rank;
     
+    private int grupo;
+    
     private static final long serialVersionUID = 1L;
 
     public Seleccion() {
@@ -56,8 +58,16 @@ public class Seleccion implements Serializable {
         this.rank = rank;
     }
 
+    public int getGrupo() {
+        return grupo;
+    }
+
+    public void setGrupo(int grupo) {
+        this.grupo = grupo;
+    }
+
     @Override
     public String toString() {
-        return "Seleccion{" + "pais=" + pais + ", capital=" + capital + ", dt=" + dt + ", status=" + status + ", rank=" + rank + '}';
+        return "Seleccion{" + "pais=" + pais + ", capital=" + capital + ", dt=" + dt + ", status=" + status + ", rank=" + rank + ", grupo=" + grupo + '}';
     }
 }

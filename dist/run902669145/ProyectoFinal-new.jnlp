@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="ProyectoFinal-new.jnlp">
+  <information>
+    <title>ProyectoFinal-new</title>
+    <vendor>Winston Churchill</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="ProyectoFinal-new.jar" size="390213" download="eager" />
+    <jar href="lib\darcula.jar" size="366601" download="eager" />
+  </resources>
+  <application-desc main-class="mundial.presentacion.Main"  name="ProyectoFinal-new" >
+  </application-desc>
+  <update check="always"/>
+</jnlp>

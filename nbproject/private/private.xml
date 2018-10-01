@@ -12,17 +12,10 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Valholl/Documents/NetBeansProjects/ProyectoFinal-new/src/mundial/presentacion/Main.java</file>
             <file>file:/C:/Users/Valholl/Documents/NetBeansProjects/ProyectoFinal-new/src/mundial/persistencia/Archivos.java</file>
-            <file>file:/C:/Users/Valholl/Documents/NetBeansProjects/ProyectoFinal-new/src/mundial/logica/Grupo.java</file>
-            <file>file:/C:/Users/Valholl/Documents/NetBeansProjects/ProyectoFinal-new/src/mundial/logica/Jugadores.java</file>
-            <file>file:/C:/Users/Valholl/Documents/NetBeansProjects/ProyectoFinal-new/src/mundial/logica/Grupos.java</file>
             <file>file:/C:/Users/Valholl/Documents/NetBeansProjects/ProyectoFinal-new/src/mundial/controlador/Fachada.java</file>
-            <file>file:/C:/Users/Valholl/Documents/NetBeansProjects/ProyectoFinal-new/src/mundial/presentacion/VerGrupos.java</file>
-            <file>file:/C:/Users/Valholl/Documents/NetBeansProjects/ProyectoFinal-new/src/mundial/presentacion/AddJugador.java</file>
             <file>file:/C:/Users/Valholl/Documents/NetBeansProjects/ProyectoFinal-new/src/mundial/presentacion/VerSelecciones.java</file>
             <file>file:/C:/Users/Valholl/Documents/NetBeansProjects/ProyectoFinal-new/src/mundial/presentacion/CrearGrupos.java</file>
-            <file>file:/C:/Users/Valholl/Documents/NetBeansProjects/ProyectoFinal-new/src/mundial/logica/Jugador.java</file>
         </group>
     </open-files>
 </project-private>

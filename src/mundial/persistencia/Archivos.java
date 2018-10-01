@@ -116,4 +116,14 @@ public class Archivos {
             }
         }
     }
+        
+    public void reemplazar(Selecciones selecciones) throws FileNotFoundException {
+        // Borra el archivo selecciones.dat
+        PrintWriter writer = new PrintWriter(rutaS);
+        writer.print("");
+        writer.close();
+        
+        // Setea selecciones.dat con el nuevo objeto
+        guardarSelecciones(selecciones);
+    }
 }

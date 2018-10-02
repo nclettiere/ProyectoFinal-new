@@ -245,17 +245,36 @@ public class CrearGrupos extends javax.swing.JInternalFrame {
                 }
                 contador++;
             }
-            
-            seleccionesMax = (indice/gruposMax);
+
+            seleccionesMax = (indice / gruposMax);
+
             System.out.println("Maximo de grupos: " + gruposMax);
             System.out.println("Maximo de selecciones por grupo: " + seleccionesMax);
 
-            for (int i = 0; i < seleccionesMax; i++) {
-                
+            Selecciones selecciones = (Selecciones) Archivos.getInstancia().recuperar(0);
+            Selecciones nuevoObjeto = new Selecciones();
+
+            int contador2 = 0;
+            int indiceGrupo = 0; // Ej -> 0 = grupo A; 1 -> grupo B ...
+            for (Seleccion s : selecciones.getLista()) {
+
+                if (contador2 == seleccionesMax) {
+                    indiceGrupo++;
+                    contador2 = 0;
+                }
+
+                s.setGrupo(indiceGrupo);
+                nuevoObjeto.insertar(s);
+                Fachada.getInstancia().reemplazarSelecciones(nuevoObjeto);
+
+                contador2++;
+
             }
 
-            //System.out.print(Fachada.getInstancia().devolverSelecciones().toString());
-            //JOptionPane.showMessageDialog(null, "La creacion de grupos fue...\nExitosa!!11!!1", "Jo!?, como has crecido...", JOptionPane.INFORMATION_MESSAGE);
+            System.out.println(nuevoObjeto.toString());
+
+            System.out.print(Fachada.getInstancia().devolverSelecciones().toString());
+            JOptionPane.showMessageDialog(null, "La creacion de grupos fue...\nExitosa!!11!!1", "Jo!?, como has crecido...", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_crearSeleccionesActionPerformed
 

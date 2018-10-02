@@ -150,6 +150,7 @@ public class VerSelecciones extends javax.swing.JInternalFrame {
         jLabel12.setText("Grupo");
 
         jComboBoxGrupo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" }));
+        jComboBoxGrupo.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -406,6 +407,8 @@ public class VerSelecciones extends javax.swing.JInternalFrame {
             jTextFieldDT.setText(seleccionada.getDt());
             jTextFieldStatus.setText(seleccionada.getStatus());
             jTextFieldRank.setText(String.valueOf(seleccionada.getRank()));
+            jComboBoxGrupo.setSelectedIndex(seleccionada.getGrupo() + 1);
+            System.out.println(seleccionada.getGrupo());
         }
     }//GEN-LAST:event_jListSeleccionesValueChanged
 

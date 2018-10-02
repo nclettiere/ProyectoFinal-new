@@ -14,8 +14,11 @@
         <group>
             <file>file:/C:/Users/Valholl/Documents/NetBeansProjects/ProyectoFinal-new/src/mundial/persistencia/Archivos.java</file>
             <file>file:/C:/Users/Valholl/Documents/NetBeansProjects/ProyectoFinal-new/src/mundial/controlador/Fachada.java</file>
+            <file>file:/C:/Users/Valholl/Documents/NetBeansProjects/ProyectoFinal-new/src/mundial/presentacion/VerGrupos.java</file>
+            <file>file:/C:/Users/Valholl/Documents/NetBeansProjects/ProyectoFinal-new/src/mundial/logica/Selecciones.java</file>
             <file>file:/C:/Users/Valholl/Documents/NetBeansProjects/ProyectoFinal-new/src/mundial/presentacion/VerSelecciones.java</file>
             <file>file:/C:/Users/Valholl/Documents/NetBeansProjects/ProyectoFinal-new/src/mundial/presentacion/CrearGrupos.java</file>
+            <file>file:/C:/Users/Valholl/Documents/NetBeansProjects/ProyectoFinal-new/src/mundial/logica/Seleccion.java</file>
         </group>
     </open-files>
 </project-private>

@@ -36,6 +36,7 @@ public class Main extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuBuscador = new javax.swing.JMenu();
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -121,6 +122,14 @@ public class Main extends javax.swing.JFrame {
 
         jMenuBar2.add(jMenu5);
 
+        jMenuBuscador.setText("Bucador Google");
+        jMenuBuscador.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuBuscadorMouseClicked(evt);
+            }
+        });
+        jMenuBar2.add(jMenuBuscador);
+
         setJMenuBar(jMenuBar2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -197,6 +206,16 @@ public class Main extends javax.swing.JFrame {
         jDesktopPane1.updateUI();
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
+    private void jMenuBuscadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuBuscadorMouseClicked
+        Buscador buscador = Buscador.getInstancia();
+        jDesktopPane1.removeAll(); // Limpiamos el panel
+        jDesktopPane1.add(buscador); // Agregamos la ventana
+        BasicInternalFrameUI bi = (BasicInternalFrameUI) buscador.getUI();
+        bi.setNorthPane(null);
+        buscador.setVisible(true); // Visualizamos
+        jDesktopPane1.updateUI();
+    }//GEN-LAST:event_jMenuBuscadorMouseClicked
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -214,6 +233,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenu jMenuBuscador;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;

@@ -13,9 +13,9 @@ public class Archivos {
     private final String rutaG; // grupos.dat
 
     private Archivos() {
-        rutaS = "C:\\Users\\Valholl\\Documents\\NetBeansProjects\\ProyectoFinal-new\\src\\mundial\\persistencia\\selecciones.dat";
-        rutaJ = "C:\\Users\\Valholl\\Documents\\NetBeansProjects\\ProyectoFinal-new\\src\\mundial\\persistencia\\jugadores.dat";
-        rutaG = "C:\\Users\\Valholl\\Documents\\NetBeansProjects\\ProyectoFinal-new\\src\\mundial\\persistencia\\grupos.dat";
+        rutaS = "C:\\Users\\Valholl\\Desktop\\ProyectoFinal-new\\src\\mundial\\persistencia\\selecciones.dat";
+        rutaJ = "C:\\Users\\Valholl\\Desktop\\ProyectoFinal-new\\src\\mundial\\persistencia\\jugadores.dat";
+        rutaG = "C:\\Users\\Valholl\\Desktop\\ProyectoFinal-new\\src\\mundial\\persistencia\\grupos.dat";
     }
 
     public static Archivos getInstancia() {
@@ -32,7 +32,6 @@ public class Archivos {
             objectOut.writeObject((Object) selecciones);
             objectOut.close();
             fileOut.close();
-            System.out.println("The Object  was succesfully written to a file");
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }
@@ -45,7 +44,6 @@ public class Archivos {
             objectOut.writeObject((Object) jugadores);
             objectOut.close();
             fileOut.close();
-            System.out.println("The Object  was succesfully written to a file");
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }
@@ -58,7 +56,6 @@ public class Archivos {
             objectOut.writeObject((Object) grupo);
             objectOut.close();
             fileOut.close();
-            System.out.println("The Object  was succesfully written to a file");
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }
@@ -115,15 +112,5 @@ public class Archivos {
                 return a;
             }
         }
-    }
-        
-    public void reemplazar(Selecciones selecciones) throws FileNotFoundException {
-        // Borra el archivo selecciones.dat
-        PrintWriter writer = new PrintWriter(rutaS);
-        writer.print("");
-        writer.close();
-        
-        // Setea selecciones.dat con el nuevo objeto
-        guardarSelecciones(selecciones);
     }
 }

@@ -1,8 +1,5 @@
 package mundial.controlador;
 
-import java.io.FileNotFoundException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import mundial.logica.Grupo;
 import mundial.logica.Grupos;
 import mundial.logica.Jugador;
@@ -42,14 +39,6 @@ public class Fachada {
 
     public void inscribirGrupo(Grupo g) {
         grupos.insertar(g);
-    }
-    
-    public void reemplazarSelecciones(Selecciones s) {
-        try {
-            Archivos.getInstancia().reemplazar(s);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Fachada.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
     public Selecciones devolverSelecciones() {

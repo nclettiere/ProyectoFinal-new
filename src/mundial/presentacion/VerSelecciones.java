@@ -406,6 +406,8 @@ public class VerSelecciones extends javax.swing.JInternalFrame {
             jTextFieldDT.setText(seleccionada.getDt());
             jTextFieldStatus.setText(seleccionada.getStatus());
             jTextFieldRank.setText(String.valueOf(seleccionada.getRank()));
+            
+            jComboBoxGrupo.setSelectedIndex(seleccionada.getGrupo());
         }
     }//GEN-LAST:event_jListSeleccionesValueChanged
 

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Selecciones implements Serializable {
+
     private final ArrayList<Seleccion> lista = new ArrayList<>();
     private static final long serialVersionUID = 1L;
 
@@ -29,25 +30,32 @@ public class Selecciones implements Serializable {
     public ArrayList<Seleccion> getLista() {
         return lista;
     }
-    
+
+    public Seleccion obtener(int posicion) {
+        Seleccion resultado = lista.get(posicion);
+        return resultado;
+    }
+
     public Seleccion obtenerPorPais(String pais) {
         Seleccion resultado = null;
-        for(Seleccion seleccion : lista) {
-            if(seleccion.getPais().equals(pais))
+        for (Seleccion seleccion : lista) {
+            if (seleccion.getPais().equals(pais)) {
                 resultado = seleccion;
+            }
         }
         return resultado;
     }
-    
+
     public Seleccion obtenerPorGrupo(int grupo) {
         Seleccion resultado = null;
-        for(Seleccion seleccion : lista) {
-            if(seleccion.getGrupo() == grupo)
+        for (Seleccion seleccion : lista) {
+            if (seleccion.getGrupo() == grupo) {
                 resultado = seleccion;
+            }
         }
         return resultado;
     }
-    
+
     @Override
     public String toString() {
         return "Selecciones{" + "lista=" + lista.toString() + '}';

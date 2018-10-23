@@ -11,11 +11,14 @@ public class Archivos {
     private final String rutaS; // selecciones.dat
     private final String rutaJ; // jugadores.dat
     private final String rutaG; // grupos.dat
+    
+    // Ruta del proyecto
+    private final String rutaProyecto = System.getProperty("user.dir");
 
     private Archivos() {
-        rutaS = "C:\\Users\\Valholl\\Desktop\\ProyectoFinal-new\\src\\mundial\\persistencia\\selecciones.dat";
-        rutaJ = "C:\\Users\\Valholl\\Desktop\\ProyectoFinal-new\\src\\mundial\\persistencia\\jugadores.dat";
-        rutaG = "C:\\Users\\Valholl\\Desktop\\ProyectoFinal-new\\src\\mundial\\persistencia\\grupos.dat";
+        rutaS = rutaProyecto+"\\src\\mundial\\persistencia\\selecciones.dat";
+        rutaJ = rutaProyecto+"\\src\\mundial\\persistencia\\jugadores.dat";
+        rutaG = rutaProyecto+"\\src\\mundial\\persistencia\\grupos.dat";
     }
 
     public static Archivos getInstancia() {
@@ -61,10 +64,26 @@ public class Archivos {
         }
     }
 
-    public Object recuperar(int tipo) {
+    public void reemplazar(int tipo, Object objeto) throws FileNotFoundException {
         switch (tipo) {
             case 0:
-            {
+                // Guarda el objeto previamente guardado
+                // Castea el objeto al correspondiente
+                Selecciones selecciones = (Selecciones)recuperar(0);
+                // Borra el contenido del archivo
+                PrintWriter writer = new PrintWriter(rutaS);
+                writer.print("");
+                writer.close();
+                // Para reemplazarlo por el nuevo objeto.
+                // Castea el objeto ingresado
+                guardarSelecciones((Selecciones) objeto);
+                break;
+        }
+    }
+
+    public Object recuperar(int tipo) {
+        switch (tipo) {
+            case 0: {
                 Selecciones a = new Selecciones();
                 try {
                     FileInputStream f = new FileInputStream(rutaS);
@@ -79,8 +98,7 @@ public class Archivos {
                 }
                 return a;
             }
-            case 1:
-            {
+            case 1: {
                 Jugadores a = new Jugadores();
                 try {
                     FileInputStream f = new FileInputStream(rutaJ);
@@ -95,8 +113,7 @@ public class Archivos {
                 }
                 return a;
             }
-            default:
-            {
+            default: {
                 Grupos a = new Grupos();
                 try {
                     FileInputStream f = new FileInputStream(rutaG);

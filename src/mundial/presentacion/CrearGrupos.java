@@ -1,6 +1,11 @@
 package mundial.presentacion;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import mundial.controlador.Fachada;
@@ -216,19 +221,40 @@ public class CrearGrupos extends javax.swing.JInternalFrame {
             jLabelCantidadP.setText(String.valueOf(indice));
             jLabelSelG.setText(String.valueOf(seleccionesMax));
 
-            int gIndice = 0;
+            int gIndice = 1;
             int contador = 0;
-            for (Seleccion s : selecciones.getLista()) {
-                s.setGrupo(gIndice);
-                contador++;
-
-                Fachada.getInstancia().inscribirSeleccion(s);
-                Fachada.getInstancia().guardarCambios(0);
-
+            Random random = new Random();
+            int[] seleccionesSeteadas = new int[indice];
+            ArrayList<Seleccion> lista = selecciones.getLista();
+            Selecciones nuevasSelecciones = new Selecciones();
+            
+            // BUGEADO MAKINA!
+            for (int i=0; i < lista.size();) {
+                int indiceRandom = random.nextInt(indice);
+                if(!Arrays.asList(seleccionesSeteadas).contains(indiceRandom)) {
+                    Seleccion s = lista.get(indiceRandom);
+                    s.setGrupo(gIndice);
+                    nuevasSelecciones.insertar(s);
+                    contador++;
+                    i++; 
+                }else {
+                    if(i != 0) {
+                      i--;  
+                    }else {
+                        i = 0;
+                    }
+                }
+                
                 if (contador == seleccionesMax) {
                     contador = 0;
                     gIndice++;
                 }
+            }
+            
+            try {
+                Archivos.getInstancia().reemplazar(0, nuevasSelecciones);
+            } catch (FileNotFoundException ex) {
+                System.err.println(ex.getMessage());
             }
             
             System.out.print(Fachada.getInstancia().devolverSelecciones().toString());

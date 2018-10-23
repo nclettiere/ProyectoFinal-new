@@ -11,7 +11,7 @@ import mundial.logica.Selecciones;
 public class Fachada {
 
     private static Fachada instancia;
-    
+
     private final Selecciones selecciones;
     private final Jugadores jugadores;
     private final Grupos grupos;
@@ -32,7 +32,7 @@ public class Fachada {
     public void inscribirSeleccion(Seleccion s) {
         selecciones.insertar(s);
     }
-    
+
     public void inscribirJugador(Jugador j) {
         jugadores.insertar(j);
     }
@@ -52,9 +52,6 @@ public class Fachada {
                 break;
             case 1:
                 Archivos.getInstancia().guardarJugadores(jugadores);
-                break;
-            default:
-                Archivos.getInstancia().guardarGrupos(grupos);
                 break;
         }
     }

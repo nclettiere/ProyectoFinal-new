@@ -10,7 +10,6 @@ public class Archivos {
     private static Archivos instancia;
     private final String rutaS; // selecciones.dat
     private final String rutaJ; // jugadores.dat
-    private final String rutaG; // grupos.dat
     
     // Ruta del proyecto
     private final String rutaProyecto = System.getProperty("user.dir");
@@ -18,7 +17,6 @@ public class Archivos {
     private Archivos() {
         rutaS = rutaProyecto+"\\src\\mundial\\persistencia\\selecciones.dat";
         rutaJ = rutaProyecto+"\\src\\mundial\\persistencia\\jugadores.dat";
-        rutaG = rutaProyecto+"\\src\\mundial\\persistencia\\grupos.dat";
     }
 
     public static Archivos getInstancia() {
@@ -45,18 +43,6 @@ public class Archivos {
             FileOutputStream fileOut = new FileOutputStream(rutaJ);
             ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
             objectOut.writeObject((Object) jugadores);
-            objectOut.close();
-            fileOut.close();
-        } catch (IOException e) {
-            System.err.println(e.getMessage());
-        }
-    }
-
-    public void guardarGrupos(Grupos grupo) {
-        try {
-            FileOutputStream fileOut = new FileOutputStream(rutaG);
-            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
-            objectOut.writeObject((Object) grupo);
             objectOut.close();
             fileOut.close();
         } catch (IOException e) {
@@ -113,21 +99,7 @@ public class Archivos {
                 }
                 return a;
             }
-            default: {
-                Grupos a = new Grupos();
-                try {
-                    FileInputStream f = new FileInputStream(rutaG);
-                    ObjectInputStream o = new ObjectInputStream(f);
-                    a = (Grupos) o.readObject(); // Obtengo Grupos a del archivo
-                    o.close();
-                    f.close();
-                } catch (EOFException e) {
-                    System.err.println(e.getMessage());
-                } catch (IOException | ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
-                return a;
-            }
         }
+        return null;
     }
 }

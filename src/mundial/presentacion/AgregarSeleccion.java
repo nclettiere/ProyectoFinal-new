@@ -1,8 +1,12 @@
 package mundial.presentacion;
 
+import java.awt.HeadlessException;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import mundial.persistencia.Archivos;
 import mundial.controlador.Fachada;
 import mundial.logica.Seleccion;
+import mundial.logica.Selecciones;
 
 public class AgregarSeleccion extends javax.swing.JInternalFrame {
 
@@ -19,7 +23,7 @@ public class AgregarSeleccion extends javax.swing.JInternalFrame {
         }
         return instancia;
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -167,28 +171,47 @@ public class AgregarSeleccion extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
+            Selecciones selecciones = (Selecciones) Archivos.getInstancia().recuperar(0);
+            ArrayList<Seleccion> lista = selecciones.getLista();
+
             String pais = comboPais.getSelectedItem().toString();
-            String capital = jTextFieldCapital.getText();
-            String dt = jTextFieldDT.getText();
-            
-            String status = comboStatus.getSelectedItem().toString();
-            int rank = Integer.parseInt(fifaRank.getText());
-            
-            Seleccion seleccion = new Seleccion();
-            seleccion.setPais(pais);
-            seleccion.setCapital(capital);
-            seleccion.setDt(dt);
-            seleccion.setStatus(status);
-            seleccion.setRank(rank);
-            
-            Fachada.getInstancia().inscribirSeleccion(seleccion);
-            Fachada.getInstancia().guardarCambios(0);
-            
-            System.out.println("########################");
-            System.out.println(Archivos.getInstancia().recuperar(0).toString());
-            
-        }catch(Exception e) {
-            System.out.println(e.getMessage());
+
+            // Boolean que se torna true si ya existe una seleccion con la el mismo pais
+            // Vease el for de abajo.
+            boolean existePais = false;
+
+            for (Seleccion s : lista) {
+                // SI existe otra seleccion con el mismo pais
+                if (s.getPais().equals(pais)) {
+                    existePais = true;
+                    JOptionPane.showMessageDialog(this, "Ya existe una seleccion con el mismo pais.");
+                }
+            }
+
+            if (existePais == false) {
+                String capital = jTextFieldCapital.getText();
+                String dt = jTextFieldDT.getText();
+
+                String status = comboStatus.getSelectedItem().toString();
+                int rank = Integer.parseInt(fifaRank.getText());
+
+                Seleccion seleccion = new Seleccion();
+                seleccion.setPais(pais);
+                seleccion.setCapital(capital);
+                seleccion.setDt(dt);
+                seleccion.setStatus(status);
+                seleccion.setRank(rank);
+
+                Fachada.getInstancia().inscribirSeleccion(seleccion);
+                Fachada.getInstancia().guardarCambios(0);
+
+                System.out.println("########################");
+                System.out.println(Archivos.getInstancia().recuperar(0).toString());
+            }
+
+        } catch (HeadlessException | NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Hubo un error, verifique que los campos sean correctos.");
+            System.err.println(e.getMessage());
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

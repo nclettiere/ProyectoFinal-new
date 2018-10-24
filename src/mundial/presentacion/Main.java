@@ -1,9 +1,17 @@
 package mundial.presentacion;
 
 import com.bulenkov.darcula.DarculaLaf;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.plaf.basic.BasicLookAndFeel;
+import mundial.logica.Seleccion;
+import mundial.logica.Selecciones;
+import mundial.persistencia.Archivos;
 
 public class Main extends javax.swing.JFrame {
 
@@ -33,7 +41,6 @@ public class Main extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuBuscador = new javax.swing.JMenu();
@@ -101,14 +108,6 @@ public class Main extends javax.swing.JFrame {
 
         jMenu5.setText("Grupos");
 
-        jMenuItem5.setText("Ver");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
-            }
-        });
-        jMenu5.add(jMenuItem5);
-
         jMenuItem6.setText("Crear");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,6 +117,11 @@ public class Main extends javax.swing.JFrame {
         jMenu5.add(jMenuItem6);
 
         jMenuItem7.setText("Reset");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItem7);
 
         jMenuBar2.add(jMenu5);
@@ -196,16 +200,6 @@ public class Main extends javax.swing.JFrame {
         jDesktopPane1.updateUI();
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        VerGrupos verGrupos = VerGrupos.getInstancia();
-        jDesktopPane1.removeAll(); // Limpiamos el panel
-        jDesktopPane1.add(verGrupos); // Agregamos la ventana
-        BasicInternalFrameUI bi = (BasicInternalFrameUI) verGrupos.getUI();
-        bi.setNorthPane(null);
-        verGrupos.setVisible(true); // Visualizamos
-        jDesktopPane1.updateUI();
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
-
     private void jMenuBuscadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuBuscadorMouseClicked
         Buscador buscador = Buscador.getInstancia();
         jDesktopPane1.removeAll(); // Limpiamos el panel
@@ -215,6 +209,33 @@ public class Main extends javax.swing.JFrame {
         buscador.setVisible(true); // Visualizamos
         jDesktopPane1.updateUI();
     }//GEN-LAST:event_jMenuBuscadorMouseClicked
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        int reply = JOptionPane.showConfirmDialog(null, "Atencion Lord, esta opcion se encuentra bugeada y nesecita un parche de victorval\nDesea continuar?", "breath. BOI.", JOptionPane.YES_NO_OPTION);
+        if (reply == JOptionPane.YES_OPTION) {
+            JOptionPane.showMessageDialog(null, "Lord, le informo que el bug se ha solucionado.\nLos grupos fueron reseteados!\nPuede volver a trabajar a la normalidad.");
+            // REEMPLAZA LA LISTA ANTERIOR POR LA NUEVA
+            Selecciones selecciones = (Selecciones) Archivos.getInstancia().recuperar(0);
+            ArrayList<Seleccion> lista = selecciones.getLista();
+
+            Selecciones reemplazo = new Selecciones();
+            for (Seleccion s : lista) {
+                // SETEA EL GRUPO A 0
+                // PARA REMOVER CUALQUIER GRUPO ANTERIORMENTE CREADO.
+                s.setGrupo(0);
+                reemplazo.insertar(s);
+            }
+
+            try {
+                //  LLAMA AL METODO DONDE SE REEMPLAZA
+                Archivos.getInstancia().reemplazar(reemplazo);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "PESIMA...\nDecision...");
+        }
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -238,7 +259,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     // End of variables declaration//GEN-END:variables

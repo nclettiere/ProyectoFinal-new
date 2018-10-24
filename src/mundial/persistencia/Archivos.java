@@ -10,13 +10,13 @@ public class Archivos {
     private static Archivos instancia;
     private final String rutaS; // selecciones.dat
     private final String rutaJ; // jugadores.dat
-    
+
     // Ruta del proyecto
     private final String rutaProyecto = System.getProperty("user.dir");
 
     private Archivos() {
-        rutaS = rutaProyecto+"\\src\\mundial\\persistencia\\selecciones.dat";
-        rutaJ = rutaProyecto+"\\src\\mundial\\persistencia\\jugadores.dat";
+        rutaS = rutaProyecto + "\\src\\mundial\\persistencia\\selecciones.dat";
+        rutaJ = rutaProyecto + "\\src\\mundial\\persistencia\\jugadores.dat";
     }
 
     public static Archivos getInstancia() {
@@ -53,21 +53,18 @@ public class Archivos {
     //  Este metodo utiliza Object para simplificar el codigo 
     //  en un solo metodo. Solamente se castea a Selecciones, Jugadores, etc...
     //  la var tipo define si se trata de una seleccion, jugador ...
-    public void reemplazar(int tipo, Object objeto) throws FileNotFoundException {
-        switch (tipo) {
-            case 0:
-                // Guarda el objeto previamente guardado
-                // Castea el objeto al correspondiente
-                // Borra el contenido del archivo
-                PrintWriter writer = new PrintWriter(rutaS);
-                writer.print("");
-                writer.close();
-                // Para reemplazarlo por el nuevo objeto.
-                // Castea el objeto ingresado
-                guardarSelecciones((Selecciones) objeto);
-                break;
-        }
+    public void reemplazar(Selecciones objeto) throws FileNotFoundException {
+
+        // Borra el contenido del archivo
+        PrintWriter writer = new PrintWriter(rutaS);
+        writer.print("");
+        writer.close();
+        // Para reemplazarlo por el nuevo objeto.
+        // Castea el objeto ingresado
+        guardarSelecciones(objeto);
+
     }
+
     //  Este metodo utiliza Object para simplificar el codigo 
     //  en un solo metodo. Solamente se castea a Selecciones, Jugadores, etc...
     //  la var tipo define si se trata de una seleccion, jugador ...

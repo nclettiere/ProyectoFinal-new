@@ -240,7 +240,7 @@ public class CrearGrupos extends javax.swing.JInternalFrame {
             }
 
             try {
-                Archivos.getInstancia().reemplazar(0, nuevasSelecciones);
+                Archivos.getInstancia().reemplazar(nuevasSelecciones);
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(CrearGrupos.class.getName()).log(Level.SEVERE, null, ex);
             }

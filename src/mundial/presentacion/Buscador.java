@@ -155,31 +155,66 @@ public class Buscador extends javax.swing.JInternalFrame {
         try {
             String busqueda = jTextFieldBusqueda.getText();
             String pais = jComboBoxPaises.getSelectedItem().toString();
-            String altura = "";
-            String peso = "";
+            int altura = 0;
+            int peso = 0;
 
-            if (!jTextFieldAltura.getText().equals(altura)) {
-                altura = jTextFieldAltura.getText();
+            if (!jTextFieldAltura.getText().isEmpty()) {
+                altura = Integer.parseInt(jTextFieldAltura.getText());
             }
-            if (!jTextFieldPeso.getText().equals(peso)) {
-                peso = jTextFieldPeso.getText();
+            if (!jTextFieldPeso.getText().isEmpty()) {
+                peso = Integer.parseInt(jTextFieldPeso.getText());
             }
+
+            System.out.println(String.valueOf(altura) + String.valueOf(peso));
 
             Jugadores jugadores = (Jugadores) Archivos.getInstancia().recuperar(1);
 
             ArrayList<Jugador> lista = jugadores.getLista();
             DefaultListModel model = new DefaultListModel();
-            
+
             int indice = 0;
             for (Jugador j : lista) {
                 if (j.getNombre().contains(busqueda)
-                    || j.getApellido().contains(busqueda)) {
+                        || j.getApellido().contains(busqueda)
+                        && altura == 0
+                        && peso == 0) {
+
                     if (j.getPais().equals(pais)) {
-                        model.add(indice, (j.getNombre() +" "+ j.getApellido()));
+                        model.add(indice, (j.getNombre() + " " + j.getApellido()));
+                    }
+
+                } else if (j.getNombre().contains(busqueda)
+                        || j.getApellido().contains(busqueda)
+                        && peso != 0
+                        && jTextFieldAltura.getText().isEmpty()) {
+
+                    if (j.getPais().equals(pais)) {
+                        if (j.getPeso() == peso) {
+                            model.add(indice, (j.getNombre() + " " + j.getApellido()));
+                        }
+                    }
+                } else if (j.getNombre().contains(busqueda)
+                        || j.getApellido().contains(busqueda)
+                        && altura != 0 
+                        && jTextFieldPeso.getText().isEmpty()) {
+
+                    if (j.getPais().equals(pais)) {
+                        if (j.getAltura() == altura) {
+                            model.add(indice, (j.getNombre() + " " + j.getApellido()));
+                        }
+                    }
+                } else if (j.getNombre().contains(busqueda)
+                        || j.getApellido().contains(busqueda)
+                        && altura != 0
+                        && peso != 0) {
+                    if (j.getAltura() == altura) {
+                        if (j.getPeso() == peso) {
+                            model.add(indice, (j.getNombre() + " " + j.getApellido()));
+                        }
                     }
                 }
             }
-            
+
             jListResultado.setModel(model);
 
         } catch (Exception e) {

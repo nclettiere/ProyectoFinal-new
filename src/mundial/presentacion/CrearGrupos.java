@@ -221,42 +221,30 @@ public class CrearGrupos extends javax.swing.JInternalFrame {
             jLabelCantidadP.setText(String.valueOf(indice));
             jLabelSelG.setText(String.valueOf(seleccionesMax));
 
-            int gIndice = 1;
-            int contador = 0;
-            Random random = new Random();
-            int[] seleccionesSeteadas = new int[indice];
             ArrayList<Seleccion> lista = selecciones.getLista();
             Selecciones nuevasSelecciones = new Selecciones();
-            
-            // BUGEADO MAKINA!
-            for (int i=0; i < lista.size();) {
-                int indiceRandom = random.nextInt(indice);
-                if(!Arrays.asList(seleccionesSeteadas).contains(indiceRandom)) {
-                    Seleccion s = lista.get(indiceRandom);
-                    s.setGrupo(gIndice);
-                    nuevasSelecciones.insertar(s);
-                    contador++;
-                    i++; 
-                }else {
-                    if(i != 0) {
-                      i--;  
-                    }else {
-                        i = 0;
-                    }
-                }
+
+            int contador = 0;
+            int gIndice = 1;
+            for (int i = 0; (i < indice); i++) {
+                Seleccion s = lista.get(i);
+                s.setGrupo(gIndice);
+                nuevasSelecciones.insertar(s);
+                
+                contador++;
                 
                 if (contador == seleccionesMax) {
                     contador = 0;
                     gIndice++;
                 }
             }
-            
+
             try {
                 Archivos.getInstancia().reemplazar(0, nuevasSelecciones);
             } catch (FileNotFoundException ex) {
-                System.err.println(ex.getMessage());
+                Logger.getLogger(CrearGrupos.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
             System.out.print(Fachada.getInstancia().devolverSelecciones().toString());
 
             JOptionPane.showMessageDialog(null, "La creacion de grupos fue...\nExitosa!!11!!1", "Jo!?, como has crecido...", JOptionPane.INFORMATION_MESSAGE);

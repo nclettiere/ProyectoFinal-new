@@ -50,12 +50,14 @@ public class Archivos {
         }
     }
 
+    //  Este metodo utiliza Object para simplificar el codigo 
+    //  en un solo metodo. Solamente se castea a Selecciones, Jugadores, etc...
+    //  la var tipo define si se trata de una seleccion, jugador ...
     public void reemplazar(int tipo, Object objeto) throws FileNotFoundException {
         switch (tipo) {
             case 0:
                 // Guarda el objeto previamente guardado
                 // Castea el objeto al correspondiente
-                Selecciones selecciones = (Selecciones)recuperar(0);
                 // Borra el contenido del archivo
                 PrintWriter writer = new PrintWriter(rutaS);
                 writer.print("");
@@ -66,7 +68,9 @@ public class Archivos {
                 break;
         }
     }
-
+    //  Este metodo utiliza Object para simplificar el codigo 
+    //  en un solo metodo. Solamente se castea a Selecciones, Jugadores, etc...
+    //  la var tipo define si se trata de una seleccion, jugador ...
     public Object recuperar(int tipo) {
         switch (tipo) {
             case 0: {
